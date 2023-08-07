@@ -1,0 +1,28 @@
+version: "2"
+sql:
+    - schema: "./db/migration"
+      queries: "./db/query/"
+      engine: "postgresql"
+      gen:
+          go:
+              out: "./db/sqlc"
+              emit_json_tags: true
+              emit_prepared_queries: false
+              emit_exact_table_names: true
+      database:
+          uri: "postgresql://postgres:secret@localhost:5432/bank"
+      rules:
+          - sqlc/db-prepare
+
+#version: "1"
+#packages:
+#    - name: "db"
+#      path: "./db/sqlc"
+#      queries: "./db/query/"
+#      schema: "./db/migration/"
+#      engine: "postgresql"
+#      emit_json_tags: true
+#      emit_prepared_queries: false
+#      emit_interface: false
+#      emit_exact_table_names: false
+
